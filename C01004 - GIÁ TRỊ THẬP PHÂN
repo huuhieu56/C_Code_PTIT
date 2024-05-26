@@ -1,0 +1,19 @@
+//peterjohn
+
+#include <stdio.h>
+
+int main() {
+    unsigned long long n;    
+    scanf("%li", &n);
+    double arr[n];
+    for (int i=0; i<n; i++){
+        double m;
+        scanf("%lf", &m);
+        
+        arr[i] = 1/m;
+    }
+    for (int i=0; i<n; i++) {
+        printf("%.15lf\n",arr[i]);
+    }
+
+}

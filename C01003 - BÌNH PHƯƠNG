@@ -1,0 +1,19 @@
+//peterjohn
+
+#include <stdio.h>
+
+int main() {
+    unsigned long long n;    
+    scanf("%li", &n);
+    long long arr[n];
+    for (int i=0; i<n; i++){
+        unsigned long long m;
+        scanf("%li", &m);
+        m *= m;
+        arr[i] = m;
+    }
+    for (int i=0; i<n; i++) {
+        printf("%li\n",arr[i]);
+    }
+    return 0;
+}

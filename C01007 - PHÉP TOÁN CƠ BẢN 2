@@ -1,0 +1,19 @@
+//peterjohn
+
+#include <stdio.h>
+
+int main() {
+    unsigned long long a, b;
+    scanf("%ld %ld", &a, &b);
+    
+    
+    printf("%ld\n%ld\n%ld\n", a+b, a-b, a*b);    
+    printf("%ld\n", a/b);
+    printf("%ld\n", a%b);
+    double c = (1.0*a)/(1.0*b);
+    printf("%.2lf\n", c);
+    
+
+    
+    return 0;
+}

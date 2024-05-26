@@ -1,0 +1,15 @@
+//peterjohn
+
+#include<stdio.h>
+
+int main() {
+    int days;
+    scanf("%d", &days);
+    int ngay = 0, tuan = 0, nam = 0;
+    nam = days/365;
+    days = days%365;
+    tuan = days/7;
+    ngay = days%7;
+    printf("%d %d %d", nam, tuan, ngay);
+    
+}
