@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+int main(){
+    int a, b;
+    scanf("%d %d", &a, &b);
+    for (int i=0; i<a; i++) {
+        if (i>=b) {
+            for (int j=0; j<b; j++) {
+                printf("%c", '@'+b-1);
+            }
+        }
+        else {
+            for (int j=i; j<b; j++){
+                printf("%c", '@'+j);
+            }
+            for (int j=0; j<i; j++) {
+                printf("%c", '@'+b-1);
+            }
+        }
+        printf("\n");
+    }
+}

@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<math.h>
+
+void swap(int* x, int* y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void selectionSort(int arr[], int n){
+    for (int i=0; i<n-1; i++){
+        int min_index = i;
+        for (int j=i+1; j<n; j++){
+            if (arr[j] < arr[min_index]){
+                min_index = j;
+            }
+        }
+        swap(&arr[i], &arr[min_index]);
+    }
+}
+
+int main(){
+    int n, n_odd = 0, n_even = 0;
+    scanf("%d", &n);
+    int arr[n];
+    for (int i=0; i<n; i++){
+        scanf("%d", &arr[i]);
+        if (arr[i]%2 == 0){
+            n_even++;
+        }
+        else{
+            n_odd++;
+        }
+    }
+    int arr_odd[n_odd], arr_even[n_even];
+    int index_odd = 0, index_even = 0;
+    for (int i=0; i<n; i++){
+        if (arr[i]%2 == 0){
+            arr_even[index_even] = arr[i];
+            index_even++;
+        }
+        else{
+            arr_odd[index_odd] = arr[i];
+            index_odd++;
+        }
+    }
+    selectionSort(arr_even, n_even);
+    selectionSort(arr_odd, n_odd);
+    for (int i=0; i<n_even; i++){
+        printf("%d ", arr_even[i]);
+    }
+    for (int i=0; i<n_odd; i++){
+        printf("%d ", arr_odd[i]);
+    }
+
+    
+    return 0;
+}

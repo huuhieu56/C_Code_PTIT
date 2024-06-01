@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<math.h>
+
+void swap(int* p1, int* p2){
+    int temp;
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
+
+int partition1(int arr[], int low, int high){
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high; j++) {        
+        if (arr[j] < pivot) {            
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+int partition2(int arr[], int low, int high) {
+    int pivot = arr[high]; 
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {    
+        if (arr[j] >= pivot) { 
+            i++;    
+            swap(&arr[i], &arr[j]);  
+        }
+    }
+    swap(&arr[i + 1], &arr[high]); 
+    return (i + 1);
+}
+
+
+void quickSort1(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition1(arr, low, high);
+        quickSort1(arr, low, pi - 1);
+        quickSort1(arr, pi + 1, high);
+    }
+}
+
+void quickSort2(int arr[], int low, int high) {
+    if (low < high) {        
+        int pi = partition2(arr, low, high);
+        quickSort2(arr, low, pi - 1);
+        quickSort2(arr, pi + 1, high);
+    }
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int len_a, len_b;
+        char character;
+        scanf("%d %d %c", &len_a, &len_b, &character);
+        int arr_a[len_a], arr_b[len_b];
+        for(int i=0; i<len_a; i++){
+            scanf("%d", &arr_a[i]);
+        }
+        for(int i=0; i<len_b; i++){
+            scanf("%d", &arr_b[i]);
+        }
+        if(character == 'T'){
+            quickSort1(arr_a, 0, len_a-1);
+            quickSort1(arr_b, 0, len_b-1);
+            int i=0,j=0;
+            while(i<len_a && j<len_b){
+                if (arr_a[i] < arr_b[j]){
+                    printf("%d ", arr_a[i]);
+                    i++;
+                }
+                else{
+                    printf("%d ", arr_b[j]);
+                    j++;
+                }
+            }
+            while(i<len_a){
+                printf("%d ", arr_a[i]);
+                i++;
+            }
+            while(j<len_b){
+                printf("%d ", arr_b[j]);
+                j++;
+            }
+        }
+        else if(character == 'G'){
+            quickSort2(arr_a, 0, len_a-1);
+            quickSort2(arr_b, 0, len_b-1);
+            int i=0, j=0;
+            while(i<len_a && j<len_b){
+                if (arr_a[i]>arr_b[j]){
+                    printf("%d ", arr_a[i]);
+                    i++;
+                }
+                else{
+                    printf("%d ", arr_b[j]);
+                    j++;
+                }
+            }
+            while(i<len_a){
+                printf("%d ", arr_a[i]);
+                i++;
+            }
+            while(j<len_b){
+                printf("%d ", arr_b[j]);
+                j++;
+            }
+        }
+        else if(character == 'F'){
+            for (int i=0; i<len_a; i++){
+                printf("%d ", arr_a[i]);
+            }
+            for (int i=0; i<len_b; i++){
+                printf("%d ", arr_b[i]);
+            }
+        }
+        else if(character == 'A'){
+            for (int i=0; i<len_b; i++){
+                printf("%d ", arr_b[i]);
+            }
+            for (int i=0; i<len_a; i++){
+                printf("%d ", arr_a[i]);
+            }
+        }
+        printf("\n");
+    }
+}

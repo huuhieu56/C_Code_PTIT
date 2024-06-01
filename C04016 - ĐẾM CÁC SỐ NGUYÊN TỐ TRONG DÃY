@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<math.h>
+
+int arr2[1000000];
+
+int isPrime(int n){
+    if (n==2 || n==3){
+        return 1;
+    }
+    if (n<2 || n%2 == 0){
+        return 0;
+    }
+    for (int i=2; i<(int)sqrt(n)+1; i++){
+        if (n%i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++){
+        int n, min = 2, max = 2;
+        scanf("%d", &n);
+        int arr[n];
+        for (int i=0; i<n; i++){
+            scanf("%d", &arr[i]);
+            if (isPrime(arr[i])){
+                arr2[arr[i]] += 1;
+                if (min>arr[i]) min = arr[i];
+                if (max<arr[i]) max = arr[i];
+            }
+        }
+        printf("Test %d:\n", _);
+        for (int i=min; i<=max; i++){
+            if (arr2[i] != 0){
+                printf("%d xuat hien %d lan\n", i, arr2[i]);
+                arr2[i] = 0;
+            }
+        }
+    }
+    return 0;
+}

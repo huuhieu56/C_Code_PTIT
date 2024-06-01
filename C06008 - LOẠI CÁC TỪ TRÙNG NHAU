@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    char str1[100], arr2d[10][30];
+    gets(str1);
+    int j=0, k=0;
+    for(int i=0; str1[i] != '\0'; i++){
+        if (str1[i] == ' '){
+            arr2d[k][j] = '\0';
+            k++;
+            j=0;
+        }
+        else{
+            arr2d[k][j] = str1[i];
+            j++;
+        }
+    }
+
+    arr2d[k][j] = '\0';
+
+    j = 0;
+    for (int i=0; i<k; i++){
+        int bool_present = 0;
+        for (int l=i+1; l<k+1; l++){
+            if (arr2d[l][j] == '\0' || l==i){
+                continue;
+            }
+            if (strcmp(arr2d[i], arr2d[l]) == 0) {
+                arr2d[l][j] = '\0';
+                bool_present++;
+            }
+        }        
+    }
+
+    for (int i=0; i<k+1; i++){
+        if(arr2d[i][j] == '\0'){
+            continue;
+        }
+        else{
+            printf("%s ", arr2d[i]);
+        }
+    }
+    return 0;
+
+}

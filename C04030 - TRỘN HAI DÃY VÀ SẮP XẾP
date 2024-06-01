@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<math.h>
+
+void swap(int* x, int* y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void ascending_selection_sort(int arr[], int n){
+    for (int i=0; i<n-1; i++){
+        int min_index = i;
+        for (int j=i+1; j<n; j++){
+            if (arr[j] < arr[min_index]){
+                min_index = j;
+            }
+        }
+        swap(&arr[i], &arr[min_index]);
+    }
+}
+void descending_selection_sort(int arr[], int n){
+    for (int i=0; i<n-1; i++){
+        int max_index = i;
+        for (int j=i+1; j<n; j++){
+            if (arr[j] > arr[max_index]){
+                max_index = j;
+            }
+        }
+        swap(&arr[i], &arr[max_index]);
+    }
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++){
+        int n;
+        scanf("%d", &n);
+        int arr1[n], arr2[n], arr12[n*2];
+        for (int i=0; i<n; i++){
+            scanf("%d", &arr1[i]);
+        }
+        for (int i=0; i<n; i++){
+            scanf("%d", &arr2[i]);
+        }
+        ascending_selection_sort(arr1, n);
+        descending_selection_sort(arr2, n);
+        for (int i=0; i<n; i++){
+            arr12[i*2] = arr1[i];
+        }
+        for (int i=0; i<n; i++){
+            arr12[i*2+1] = arr2[i];
+        }
+        printf("Test %d:\n", _);
+        for (int i=0; i<2*n; i++){
+            printf("%d ", arr12[i]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}

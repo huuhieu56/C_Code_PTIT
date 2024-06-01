@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+
+int gcd (int a, int b) {
+    if (!b) return a;
+    return gcd(b, a%b);
+}
+
+int lcm (int a, int b) {
+    int gcd_num = gcd(a, b);
+    return (a*b)/gcd_num;
+}
+
+struct fraction {
+    int numerator;
+    int donominator;
+};
+
+void shortcut (int* x, int* y) {
+    int gcd_num = gcd(*x, *y);
+    *x /= gcd_num;
+    *y /= gcd_num;
+}
+
+int main () {
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++) {
+        struct fraction f1;
+        struct fraction f2;
+        scanf("%d %d %d %d", &f1.numerator, &f1.donominator, &f2.numerator, &f2.donominator);
+        printf("Case #%d:\n", _);
+        shortcut(&f1.numerator, &f1.donominator);
+        shortcut(&f2.numerator, &f2.donominator);
+        int lcm_num = lcm(f1.donominator, f2.donominator);
+        f1.numerator = f1.numerator*(lcm_num/f1.donominator);
+        f2.numerator = f2.numerator*(lcm_num/f2.donominator);
+        f1.donominator = lcm_num;
+        f2.donominator = lcm_num;
+        printf("%d/%d %d/%d\n", f1.numerator, f1.donominator, f2.numerator, f2.donominator);
+        printf("%d/%d\n", f1.numerator+f2.numerator, f1.donominator);
+        struct fraction f3;
+        f3.numerator = f1.numerator*f2.donominator;
+        f3.donominator = f1.donominator*f2.numerator;
+        shortcut(&f3.numerator, &f3.donominator);
+        printf("%d/%d\n", f3.numerator, f3.donominator);
+    }
+}

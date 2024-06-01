@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char string[1000];
+        int arr[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        gets(string);
+        if (string[0] == '0'){
+            printf("INVALID\n");
+            continue;
+        }
+        int bool = 1;
+        for (int i=0; string[i]!='\0'; i++){
+            if (string[i]<'0' || string[i]>'9'){
+                bool = 2;
+                printf("INVALID\n");
+                break;
+            }
+            else{
+                arr[string[i]-'0'] = 1;
+            }
+        }
+        if (bool==2){
+            continue;
+        }
+        for (int i=0; i<10; i++){
+            if (arr[i] == 0){
+                bool = 0;
+                break;
+            }
+        }
+        if (bool){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }
+        
+    }
+}

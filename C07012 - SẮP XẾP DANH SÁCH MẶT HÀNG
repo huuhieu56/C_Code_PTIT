@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+
+struct item {
+    int id;
+    char name[100];
+    char group[100];
+    float buy_price;
+    float sale_price;
+    float profit;
+};
+
+
+void swap_struct (struct item* it1, struct item* it2) {
+    struct item temp = *it1;
+    *it1 = *it2;
+    *it2 = temp;
+}
+
+void selection_sort (struct item array_item[], int n) {
+    for (int i=0; i<n-1; i++) {
+        int max_idx = i;
+        for (int j=i+1; j<n; j++) {
+            if (array_item[j].profit > array_item[max_idx].profit) max_idx = j;
+        }
+        swap_struct (&array_item[i], &array_item[max_idx]);
+    }
+}
+
+int main () {
+    int t;
+    scanf("%d", &t);
+    struct item array_item[t];
+    for (int i=0; i<t; i++) {
+        array_item[i].id = i+1;
+        getchar();
+        gets(array_item[i].name);
+        gets(array_item[i].group);
+        scanf("%f", &array_item[i].buy_price);
+        scanf("%f", &array_item[i].sale_price);
+        array_item[i].profit = array_item[i].sale_price - array_item[i].buy_price;
+    }
+    selection_sort(array_item, t);
+    for (int i=0; i<t; i++) {
+        printf("%d %s %s %.2f\n", array_item[i].id,array_item[i].name, array_item[i].group, array_item[i].profit);
+    }
+}

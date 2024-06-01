@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+
+struct human
+{
+    int id;
+    char name[50];
+    char date[20];
+    float score_1;
+    float score_2;
+    float score_3;
+    float sum;
+};
+
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    struct human Human[t];
+    float max_score = 0;
+    for (int _=0; _<t; _++)
+    {
+        Human[_].id = _+1;
+        getchar();
+        gets(Human[_].name);
+        gets(Human[_].date);
+        scanf("%f", &Human[_].score_1);
+        scanf("%f", &Human[_].score_2);
+        scanf("%f", &Human[_].score_3);
+
+        Human[_].sum = Human[_].score_1 + Human[_].score_2 + Human[_].score_3;
+        if (max_score<Human[_].sum) max_score = Human[_].sum;
+    }
+    for (int _=0; _<t; _++) 
+    {
+        if (Human[_].sum == max_score) {
+            printf("%d %s %s %.1f\n", Human[_].id, Human[_].name, Human[_].date, Human[_].sum);
+        }
+    }
+}

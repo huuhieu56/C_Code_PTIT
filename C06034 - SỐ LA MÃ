@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+struct Roman {
+    int integer;
+    char r;
+};
+
+int main () {
+    struct Roman roman[7];
+    roman[0].integer = 1;
+    roman[0].r = 'I';
+    roman[1].integer = 5;
+    roman[1].r = 'V';
+    roman[2].integer = 10;
+    roman[2].r = 'X';
+    roman[3].integer = 50;
+    roman[3].r = 'L';
+    roman[4].integer = 100;
+    roman[4].r = 'C';
+    roman[5].integer = 500;
+    roman[5].r = 'D';
+    roman[6].integer = 1000;
+    roman[6].r = 'M';
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while (t--) {
+        char string[500];
+        int sum = 0;
+        gets(string);
+        int len = strlen(string);
+        
+        for (int i=0; i<len-1; i++) {
+            int num1, num2;
+            for (int j=0; j<7; j++) {
+                if (roman[j].r == string[i]) {
+                    num1 = roman[j].integer;
+                    break;
+                }
+            }
+            for (int j=0; j<7; j++) {
+                if (roman[j].r == string[i+1]) {
+                    num2 = roman[j].integer;
+                    break;
+                }
+            }
+
+            if (num1 < num2) {
+                sum -= num1;
+            }
+            else {
+                sum += num1;
+            }
+        }
+        int num;
+        for (int j=0; j<7; j++) {
+            if (string[len-1] == roman[j].r) {
+                num = roman[j].integer;
+                break;
+            }
+        }
+        sum += num;
+        printf("%d\n", sum);
+    }
+}

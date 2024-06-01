@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    for (int _=1; _<=t; _++){
+        char string[200], word1[50][30], word2[30][30], word_remove[30];
+        gets(string);
+        gets(word_remove);
+        int row=0, col=0;
+        for (int i=0; string[i] != '\0'; i++){
+            if (string[i] == ' '){
+                word1[row][col] = '\0';
+                word2[row][col] = '\0';
+                if (col != 0) row++;
+                col = 0;                
+            }
+            else{
+                word1[row][col] = string[i];
+                if (string[i] >= 'A' && string[i] <= 'Z'){
+                    word2[row][col] = string[i]-'A'+'a';
+                }
+                else{
+                    word2[row][col] = string[i];
+                }
+                col++;
+            }
+        }
+        word1[row][col] = '\0'; word2[row][col] = '\0';
+        for (int i=0; word_remove[i] != '\0'; i++){
+            if (word_remove[i] >= 'A' && word_remove[i] <= 'Z'){
+                word_remove[i] = word_remove[i]-'A'+'a';
+            }
+        }
+        printf("Test %d: ", _);
+
+        for (int i=0; i<=row; i++){
+            if (strcmp(word2[i], word_remove) == 0){
+                continue;
+            }
+            else{
+                printf("%s ", word1[i]);
+            }
+        }
+        printf("\n");
+    }
+}

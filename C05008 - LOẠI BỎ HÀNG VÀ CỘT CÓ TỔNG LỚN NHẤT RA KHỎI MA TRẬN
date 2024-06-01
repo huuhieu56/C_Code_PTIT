@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<math.h>
+
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++){
+        int m, n;
+        scanf("%d %d", &m, &n);
+        int arr[m][n];
+        for (int i=0; i<m; i++){
+            for (int j=0; j<n; j++){
+                scanf("%d", &arr[i][j]);
+            }
+        }
+        int index_column = 0, index_row = 0;
+        int max_sum_column = 0, max_sum_row = 0;
+        for (int i=0; i<m; i++){
+            int temp_sum = 0;
+            for (int j=0; j<n; j++){
+                temp_sum += arr[i][j];
+            }
+            if (temp_sum>=max_sum_row){
+                max_sum_row = temp_sum;
+                index_row = i;
+            }
+        }
+        for (int j=0; j<n; j++){
+            arr[index_row][j] = 0;
+        }
+        for (int j=0; j<n; j++){
+            int temp_sum = 0;
+            for (int i=0; i<m; i++){
+                temp_sum += arr[i][j];
+            }
+            if (temp_sum>=max_sum_column){
+                max_sum_column = temp_sum;
+                index_column = j;
+            }
+        }
+        printf("Test %d:\n", _);
+        for (int i=0; i<m; i++){
+            
+                for (int j=0; j<n; j++){
+                    if (j==index_column || i==index_row){
+                        printf("");
+                    }
+                    else{
+                        printf("%d ", arr[i][j]);
+                    }
+                }
+                printf("\n");
+            
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+struct monomial {
+    int multiplier;
+};
+
+int main () {
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while (t--) {
+        
+        int max_pow = 0;
+        char string1[100000], string2[100000], monomial_string[200], empty_string[200];
+        for (int i=0; i<200; i++) {
+            empty_string[i] = '\0';
+        }
+        strcpy(monomial_string, empty_string);
+        struct monomial arr[100000];
+        for (int i=0; i<100000; i++) {
+            arr[i].multiplier = 0;
+        }
+        int len = 0;
+        gets(string1);
+        gets(string2);
+        string1[strlen(string1)] = ' ';
+        string2[strlen(string2)] = ' ';
+        for (int i=0; string1[i] != '\0'; i++) {
+            if (string1[i] == ' ') {
+                int sum1 = 0, sum2 = 0;
+                int j = 0;
+                while (monomial_string[j]!='*') {
+                    sum1 = sum1*10 + (monomial_string[j] - '0');
+                    j++;
+                }
+                j+=3;
+                while (j<len) {
+                    sum2 = sum2*10 + (monomial_string[j] - '0');
+                    j++;
+                }
+                arr[sum2].multiplier += sum1;
+                if (sum2>max_pow) max_pow = sum2;
+                strcpy(monomial_string, empty_string);
+                len = 0;
+            }
+            else if (string1[i]=='+') {
+                i++;
+            }
+            else {
+                monomial_string[len++] = string1[i];
+            }
+        }
+        for (int i=0; string2[i] != '\0'; i++) {
+            if (string2[i] == ' ') {
+                int sum1 = 0, sum2 = 0;
+                int j = 0;
+                while (monomial_string[j]!='*') {
+                    sum1 = sum1*10 + (monomial_string[j] - '0');
+                    j++;
+                }
+                j+=3;
+                while (j<len) {
+                    sum2 = sum2*10 + (monomial_string[j] - '0');
+                    j++;
+                }
+                arr[sum2].multiplier += sum1;
+                if (sum2>max_pow) max_pow = sum2;
+                strcpy(monomial_string, empty_string);
+                len = 0;
+            }
+            else if (string2[i]=='+') {
+                i++;
+            }
+            else {
+                monomial_string[len++] = string2[i];
+            }
+        }
+        if (max_pow == 0 && arr[max_pow].multiplier == 0) {
+            printf("\n");
+        }
+        else {
+            printf("%d*x^%d ", arr[max_pow].multiplier, max_pow);
+            for (int i=max_pow-1; i>=0; i--) {
+                if (arr[i].multiplier != 0) printf("+ %d*x^%d ", arr[i].multiplier, i);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}

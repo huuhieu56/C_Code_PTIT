@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main () {
+    char temp[50], word[10000][50];
+    int n = 0;
+    int max = 0;
+    while (scanf("%s", temp) != -1) {
+        strcpy(word[n++], temp);
+        if (strlen(temp) > max) max = strlen(temp);            
+
+    }
+    for (int i=0; i<n; i++) {
+        if (strlen(word[i]) == max) {
+            int count = 1;
+            for (int j=i+1; j<n; j++) {
+                if (strcmp(word[i], word[j]) == 0) {
+                    count ++;
+                    word[j][0] = '\0';
+                }
+            }
+            printf("%s %d  %d\n", word[i],max, count);
+        }        
+    }
+    
+}

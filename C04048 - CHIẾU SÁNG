@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h>
+
+int a[10000];
+
+int main(){
+    int n, m, k;
+    scanf("%d", &n);
+    scanf("%d", &m);
+    scanf("%d", &k);
+    int arr[m];
+    for (int i=0; i<m; i++){
+        scanf("%d", &arr[i]);
+        for (int j=arr[i]-k; j<=arr[i]+k; j++){
+            if (j>0 && j<=n){
+                a[j] = 1;
+            }
+        }
+    }
+    int lamp = 0;
+    int sum = 0;
+    int index = 1;
+    while (index<=n){
+        if (a[index] == 0){
+            sum++;
+        }
+        else{
+            if (sum%(2*k+1) == 0){
+                lamp += sum/(2*k+1);
+            }
+            else{
+                lamp += (sum/(2*k+1))+1;
+            }
+            sum = 0;
+        }
+        index++;
+    }
+    if(sum!=0){
+        if (sum%(2*k+1) == 0){
+                lamp += sum/(2*k+1);
+            }
+            else{
+                lamp += (sum/(2*k+1))+1;
+            }
+            sum = 0;
+    }
+    printf("%d", lamp);
+
+
+    return 0;
+}

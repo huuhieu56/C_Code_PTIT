@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<math.h>
+
+int isPrime(int n){
+    if (n==2 || n==3){
+        return 1;
+    }
+    if (n%2==0 || n<2){
+        return 0;
+    }
+    for (int i=2; i<=(int)sqrt(n)+1; i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+
+int main(){
+    int n, sum = 0;
+    scanf("%d", &n);
+    int arr[n][n];
+    for (int i=0; i<n; i++){
+        for (int j=0; j<n; j++){
+            scanf("%d", &arr[i][j]);
+            if (j>=i && isPrime(arr[i][j])) {sum+=arr[i][j];}
+        }
+    }
+    printf("%d", sum);
+    return 0;
+}

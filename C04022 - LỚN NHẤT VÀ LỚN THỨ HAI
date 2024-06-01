@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int n, max_st, max_nd;
+    scanf("%d", &n);
+    int arr[n];
+    for (int i=0; i<n; i++){
+        scanf("%d", &arr[i]);
+    }
+    
+    if (arr[0] <= arr[1]){
+        max_st = arr[1];
+        max_nd = arr[0];
+    }
+    else{
+        max_st = arr[0];
+        max_nd  = arr[1];
+    }
+    for (int i=2; i<n; i++){
+        if (arr[i] > max_st){
+            max_nd = max_st;
+            max_st = arr[i];
+        }
+        else if (arr[i] > max_nd && arr[i] != max_st){
+            max_nd = arr[i];
+        }
+    }
+    printf("%d %d", max_st, max_nd);      
+    return 0;
+}

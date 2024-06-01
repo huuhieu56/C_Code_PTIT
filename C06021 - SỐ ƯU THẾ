@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char string[1000];
+        gets(string);
+        int len = strlen(string);
+        int count_odd=0, count_even=0;
+        int bool_valid = 1;
+        for (int i=0; i<len; i++){
+            if (string[i] <'0' || string[i]>'9'){
+                printf("INVALID");
+                bool_valid = 0;
+                break;
+            }
+            if (string[i]%2 == 0) count_even++;
+            else count_odd++;
+        }
+        if (bool_valid){
+            if (len%2 == 0 && count_even>count_odd){
+                printf("YES");
+            }
+            else if(len%2 == 1 && count_even<count_odd){
+                printf("YES");
+            }
+            else{
+                printf("NO");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}

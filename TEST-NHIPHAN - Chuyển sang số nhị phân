@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+unsigned int_to_int(unsigned k) {
+    if (k == 0) return 0;
+    if (k == 1) return 1;                       
+    return (k % 2) + 10 * int_to_int(k / 2);
+}
+
+int main() {
+    int a;
+    scanf("%d", &a);
+    printf("%d", int_to_int(a));
+}

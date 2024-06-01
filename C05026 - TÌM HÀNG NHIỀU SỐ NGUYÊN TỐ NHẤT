@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<math.h>
+
+
+int isPrime(int n){
+    if (n==2 || n==3){
+        return 1;
+    }
+    if (n<2 || n%2 == 0){
+        return 0;
+    }
+    for (int i=2; i<=(int)sqrt(n); i++){
+        if (n%i==0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main(){
+    int n;
+    scanf("%d", &n);
+    int arr[n][n], max_index=0, count_max=0;
+    for (int i=0; i<n; i++){
+        int count = 0;
+        for (int j=0; j<n; j++){
+            scanf("%d", &arr[i][j]);
+            if (isPrime(arr[i][j])){
+                count++;
+            }
+        }
+        if (count>count_max){
+            max_index = i;
+            count_max = count;
+        }
+    }
+    printf("%d\n", max_index+1);
+    for (int i=0; i<n; i++){
+        if (isPrime(arr[max_index][i])){
+            printf("%d ", arr[max_index][i]);
+        }
+    }
+
+}

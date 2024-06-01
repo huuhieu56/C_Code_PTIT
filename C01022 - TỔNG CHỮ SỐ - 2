@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int get_sum(long long x){
+    int sum = 0;
+    while(x){
+        sum += (x%10);
+        x /= 10;
+    }
+    return sum;
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long n;
+        scanf("%lld", &n);
+        printf("%d\n", get_sum(n));
+    }
+    return 0;
+}

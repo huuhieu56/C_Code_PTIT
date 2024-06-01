@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+
+void find(int n){
+    int count = 0;
+    for (int i=1; i <= (int)(sqrt(n)); i++){
+        if (n%i == 0){
+            if (i%2 == 0){
+                count += 1;
+            }
+            if ((n/i)%2 == 0){
+                count += 1;
+            }
+        }
+    }
+    if (pow((int)sqrt(n), 2) == n){
+        if (n%4 == 0){
+            count -= 1;
+        }
+    }
+    printf("%d\n", count);
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int temp;
+        scanf("%d", &temp);
+        find(temp);
+    }
+    return 0;
+}

@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+
+int is_prime(long long n){
+    for (int i=3; i<= (long long)sqrt(n); i+=2){
+        if (n%i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void product_prime_number(long long n){
+    long long product = 1;
+    long long last_number = 1;
+    while(n%2 == 0){
+        if (last_number != 2){
+            product *= 2;
+            last_number = 2;
+        }
+        n /= 2;
+    }
+    long long i = 3;
+    while(n!=1){
+        while(n%i == 0 && is_prime(i) == 1){
+            if (last_number != i){
+                last_number = i;
+                product *= i;
+            }
+            n /= i;
+        }
+    
+        i += 2;
+    }
+    printf("%lld\n", product);
+    return;
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long temp;
+        scanf("%lld", &temp);
+        product_prime_number(temp);
+        printf("\n");
+    }
+}

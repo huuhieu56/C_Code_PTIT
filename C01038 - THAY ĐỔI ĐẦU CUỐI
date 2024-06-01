@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h>
+
+long long reverse_number(long long n){
+    int first_number,  last_number = n%10;
+    int count = 0;
+    long long m = 0;
+    while(n>10){
+        m = m + (n%10)*(pow(10, count));
+        n /= 10;
+        count++;
+    }
+    first_number = n;
+
+    m = last_number*pow(10, count) + m - last_number + first_number;
+    return m;
+}
+
+int main(){
+    long long n;
+    scanf("%lld", &n);
+    printf("%lld", reverse_number(n));
+    return 0;
+}

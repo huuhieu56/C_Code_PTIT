@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+void swap(long long* x, long long* y) {
+    long long temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+long long factorial(long long n){
+    long long product = 1;
+    for (long long i=1; i<=n; i++){
+        product *= i;
+    }
+    return product;
+}
+
+int check(long long n){
+    long long a = n;
+    long long sum=0;
+    while (n){
+        int a = n%10;
+        sum += factorial(a);
+        n /= 10;
+    }
+    return sum==a;
+}
+
+int main() {
+    long long a, b;
+    scanf("%lld %lld", &a, &b);
+    if (a>b) swap(&a, &b);
+    for (long long i=a; i<=b; i++){
+        if (check(i)) {
+            printf("%lld ", i);
+        }
+    }
+}

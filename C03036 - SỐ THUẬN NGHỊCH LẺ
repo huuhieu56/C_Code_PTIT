@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+int isPalindrome(long long n){
+    long long a = n;
+    long long sum = 0;
+    while (a) {
+        sum = sum*10 + a%10;
+        a /= 10;
+    }
+    return sum == n;
+}
+
+int allAreOdd(long long n){
+    while (n) {
+        if ((n%10)%2==0) return 0;
+        n /= 10;
+    }
+    return 1;
+}
+
+int sumIsOdd(long long n){
+    long long sum = 0;
+    while (n) {
+        sum += n%10;
+        n /= 10;
+    }
+    return sum%2==1;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        long long n;
+        scanf("%lld", &n);
+        if (isPalindrome(n) && sumIsOdd(n) && allAreOdd(n)) {
+            printf("YES");
+        }
+        else {
+            printf("NO");
+        }
+        printf("\n");
+    }
+}

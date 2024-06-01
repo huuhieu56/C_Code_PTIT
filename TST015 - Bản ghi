@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+struct Triangle {
+    double a;
+    double b;
+    double c;
+    double area;
+    double perimeter;
+};
+
+void set_perimeter (struct Triangle* triangle) {
+    triangle->perimeter = triangle->a + triangle->b + triangle->c;
+}
+
+void set_area (struct Triangle* triangle) {
+    triangle->area = sqrt((triangle->perimeter/2)*(triangle->perimeter/2-triangle->a)*(triangle->perimeter/2-triangle->b)*(triangle->perimeter/2-triangle->c));
+}
+
+void swap (struct Triangle* t1, struct Triangle* t2) {
+    struct Triangle temp = *t1;
+    *t1 = *t2;
+    *t2 = temp;
+}
+
+void selection_sort_struct (struct Triangle arr[], int n) {
+    for (int i=0; i<n; i++) {
+        int min_idx = i;
+        for (int j=i+1; j<n; j++) {
+            if (arr[j].area < arr[min_idx].area) min_idx = j;
+        }
+        swap(&arr[i], &arr[min_idx]);
+    }
+}
+
+int main () {
+    int n;
+    scanf("%d", &n);
+    struct Triangle arr[n];
+    for (int i=0; i<n; i++) {
+        scanf("%lf %lf %lf", &arr[i].a, &arr[i].b, &arr[i].c);
+        set_perimeter(&arr[i]);
+        set_area(&arr[i]);
+    }
+    selection_sort_struct(arr, n);
+    for (int i=0; i<n; i++) {
+        long long a = (long long)arr[i].a;
+        long long b = (long long)arr[i].b;
+        long long c = (long long)arr[i].c;
+        printf("%lld %lld %lld\n", a, b, c);
+    }
+}

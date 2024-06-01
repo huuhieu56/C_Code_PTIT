@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int a, b, index;
+    scanf("%d %d", &a, &b);
+    int arr_1[a], arr_2[b];
+    for (int i=0; i<a; i++){
+        scanf("%d", &arr_1[i]);
+    }
+    for (int i=0; i<b; i++){
+        scanf("%d", &arr_2[i]);
+    }
+    scanf("%d", &index);
+
+    if (index == a){
+        for(int i=0; i<a; i++){
+            printf("%d ", arr_1[i]);
+        }
+        for(int i=0; i<b; i++){
+            printf("%d ", arr_2[i]);
+        }
+    }
+    else{
+        for (int i=0; i<a; i++){
+            if (i == index){
+                for(int j=0; j<b; j++){
+                    printf("%d ", arr_2[j]);
+                }
+                printf("%d ", arr_1[i]);
+            }
+            else{
+                printf("%d ", arr_1[i]);
+            }
+        }
+    }
+    return 0;
+}

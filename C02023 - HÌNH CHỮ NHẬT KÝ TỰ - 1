@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+typedef long long ll;
+
+int main () {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    int max = a;
+    if (a<b) {
+        max = b;
+    }
+    for (int i=0; i<a; i++) {
+        if (i>=b) {
+            for (int j=0; j<b; j++) {
+                printf("%c", 'a'-1+a-j);
+            }
+        }
+        else{
+            for (int j=0; j<i; j++) {
+                printf("%c", 'a'-1+max-j);
+            }
+            for (int j=i; j<b; j++) {
+                printf("%c", 'a'-1+max-i);
+            }
+        }
+        printf("\n");
+    }
+}

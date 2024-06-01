@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef long long ll;
+
+void swap(int* x, int* y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int check_ascending_number(ll n){
+    int digit = 10;
+    while(n){
+        if (digit<(n%10)){
+            return 0;
+        }
+        digit = n%10;
+        n /= 10;
+    }
+    return 1;
+}
+
+int main(){
+    ll arr[2][100000];
+    int length=0;
+    ll temp_num;
+    while (scanf("%lld", &temp_num) != -1){
+        if (check_ascending_number(temp_num)){
+            int bool = 1;
+            for (int i=0; i<length; i++){
+                if (arr[0][i] == temp_num){
+                    arr[1][i]++;
+                    bool = 0;
+                }
+            }
+            if (bool){
+                arr[0][length] = temp_num;
+                arr[1][length] = 1;
+                length++;
+            }
+        }
+    }
+    for (int i=0; i<length-1; i++){
+        int max_idx = i;
+        for (int j=i+1; j<length; j++){
+            if (arr[1][j] > arr[1][max_idx]){
+                max_idx = j;
+            }
+        }
+        swap(&arr[0][i], &arr[0][max_idx]);
+        swap(&arr[1][i], &arr[1][max_idx]);
+    }
+    
+    for (int i=0; i<length; i++){
+        printf("%lld %lld\n", arr[0][i], arr[1][i]);
+    }
+    return 0;
+}
+

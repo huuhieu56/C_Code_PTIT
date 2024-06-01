@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+typedef long long ll;
+
+int isPalindrome (ll n) {
+    ll a = n;
+    ll sum = 0;
+    while (a) {
+        sum = sum*10 +a%10;
+        a /= 10;
+    }
+    return sum==n;
+}
+
+int check_9 (ll n) {
+    while (n) {
+        if (n%10==9) return 0;
+        n/=10;
+    }
+    return 1;
+}
+
+
+int main () {
+    ll n; int count = 0;
+    scanf("%lld", &n);
+    for (ll i=2; i<n; i++) {
+        if (check_9(i)) {
+            if (isPalindrome(i)) {
+                printf("%lld ", i);
+                count++;
+            }
+        }
+    }
+    printf("\n%d", count);
+    return 0;
+}

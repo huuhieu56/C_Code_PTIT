@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+
+void swap(int* x, int* y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void reverse_string(char *string){
+    int len = strlen(string);
+    char* start = string;
+    char* end = string+len-1;
+    while(start<end){
+        char temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char string_a[500], string_b[500], string_sum[501];
+        gets(string_a);
+        gets(string_b);
+        int len_a = strlen(string_a);
+        int len_b = strlen(string_b);
+        if ((len_a > len_b) ) {
+            char temp[500];
+            strcpy(temp, string_a);
+            strcpy(string_a, string_b);
+            strcpy(string_b, temp);
+            swap(&len_a, &len_b);
+        }
+        else if (len_a == len_b) {
+            for (int i=0; i<len_a; i++) {
+                if (string_a[i] > string_b[i]) {
+                    char temp[500];
+                    strcpy(temp, string_a);
+                    strcpy(string_a, string_b);
+                    strcpy(string_b, temp);
+                    swap(&len_a, &len_b);
+                    break;
+                }
+            }
+        }
+        reverse_string(string_a);
+        reverse_string(string_b);
+        int i=0;
+        int carry = 0;
+
+
+        while(i < len_b){
+            char a = string_a[i];
+            if (i>=len_a) a = '0';
+            char b = string_b[i];
+            if (i>=len_b) b = '0';
+            int temp_char = -(a - '0') + b - '0' - carry;
+            if (temp_char < 0){
+                temp_char += 10;
+                string_sum[i] = '0' + temp_char;
+                carry=0;
+                carry++;
+            }
+            else{
+                string_sum[i] = '0' + temp_char;
+                carry = 0;
+            }
+            i++;            
+        }
+        string_sum[i] = '\0';
+        while (string_sum[i-1] == '0') {
+            string_sum[i-1] = '\0';
+            i--;
+        }
+        reverse_string(string_sum);
+        printf("%s\n", string_sum);
+    }
+}

@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    t--;
+    long long min_a, min_b;
+    scanf("%lld %lld", &min_a, &min_b);
+    while (t--){
+        long long a, b;
+        scanf("%lld %lld", &a, &b);
+        if (a<=min_a) min_a = a;
+        if (b<=min_b) min_b = b;
+    }
+    printf("%lld", min_a*min_b);
+}

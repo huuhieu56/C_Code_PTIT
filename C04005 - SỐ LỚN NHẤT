@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<math.h>
+
+int findMaxElement(int arr[], int n){
+    int maxE = arr[0];
+    for (int i=0; i<n; i++){
+        if (arr[i] > maxE){
+            maxE = arr[i];
+        }
+    }
+    return maxE;
+}
+
+void findIndex(int arr[], int n){
+    int maxE = findMaxElement(arr, n);
+    printf("%d\n", maxE);
+    for (int i=0; i<n; i++){
+        if (arr[i] == maxE){
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int n;
+        scanf("%d", &n);
+        int arr[n];
+        for (int i=0; i<n; i++){
+            scanf("%d", &arr[i]);
+        }
+        findIndex(arr, n);
+    }
+    return 0;
+}

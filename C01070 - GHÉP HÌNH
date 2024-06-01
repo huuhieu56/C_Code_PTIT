@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<math.h>
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    //input
+    int a1, a2, b1, b2, c1, c2;
+    scanf("%d %d", &a1, &a2);
+    scanf("%d %d", &b1, &b2);
+    scanf("%d %d", &c1, &c2);
+    
+    //swap to format chieu dai - chieu rong
+    if (a1 < a2){swap(&a1, &a2);}
+    if (b1 < b2){swap(&b1, &b2);}
+    if (c1 < c2){swap(&c1, &c2);}
+
+    int max_number = (a1 > b1 ? (a1 > c1 ? a1 : c1) : (b1 > c1 ? b1 : c1));
+    if (max_number*max_number - a1*a2 - b1*b2 - c1*c2 == 0){
+        if (a1 == b1 && b1 == c1 && c1 == max_number){
+            if (a2+b2+c2 == max_number){
+                printf("YES");
+            }
+            else{
+                printf("NO");
+            }
+        }
+        else if (a1 == max_number && (b1 == c2 && a2+b1 == max_number) || (b2 == c1 && a2+b2 == max_number)){
+            printf("YES");
+            
+        }
+        else if (b1 == max_number && (a1 == c2 && b2+a1 == max_number) || (a2 == c1 && b2+a2 == max_number)){
+            printf("YES");
+        
+        }
+        else if (c1 == max_number && (a1 == b2 && c2+a1 == max_number) || (a2 == b1 && c2+a2 == max_number)){
+            printf("YES");
+            
+        }
+        else if (a1 == max_number && (b1 == c1 && a2+b1 == max_number) || (b2 == c2 && a2+b2 == max_number)){
+            printf("YES");
+            
+        }
+        else if (b1 == max_number && (a1 == c1 && b2+a1 == max_number) || (a2 == c2 && b2+a2 == max_number)){
+            printf("YES");
+        
+        }
+        else if (c1 == max_number && (a1 == b1 && c2+a1 == max_number) || (a2 == b2 && c2+a2 == max_number)){
+            printf("YES");
+            
+        }
+        else {
+        
+            printf("NO");
+        }
+    }
+    else{
+        printf("NO");
+    }
+    return 0;
+}

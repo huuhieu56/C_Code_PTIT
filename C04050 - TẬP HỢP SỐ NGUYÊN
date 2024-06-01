@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<math.h>
+
+int a[10000], b[10000];
+
+void swap(int* x, int* y){
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void bubble_sort(int arr[], int n){
+    for (int i=0; i<n; i++){
+        int swaped = 0;
+        for (int j=0; j<n-1; j++){
+            if (arr[j] > arr[j+1]){
+                swap(&arr[j], &arr[j+1]);
+                swaped = 1;
+            }
+        }
+        if (swaped == 0){
+            return;
+        }
+    }
+
+}
+
+int main(){
+    int n, m;
+    scanf("%d %d", &n, &m);
+    int arr_a[n], arr_b[m];
+    for (int i=0; i<n; i++){
+        scanf("%d", &arr_a[i]);
+        if (a[arr_a[i]] == 1){
+            arr_a[i] = 0;
+        }
+        else{
+            a[arr_a[i]] = 1;
+        }
+    }
+    for (int i=0; i<m; i++){
+        scanf("%d", &arr_b[i]);
+        if (b[arr_b[i]] == 1){
+            arr_b[i] = 0;
+        }
+        else{
+            b[arr_b[i]] = 1;
+        }
+    }
+
+    bubble_sort(arr_a, n);
+    bubble_sort(arr_b, m);
+
+    for (int i=0; i<n; i++){
+        if (b[arr_a[i]] == 1 && arr_a[i] != 0){
+            printf("%d ", arr_a[i]);
+        }
+    }
+    printf("\n");
+    for (int i=0; i<n; i++){
+        if (b[arr_a[i]] == 0 && arr_a[i] != 0){
+            printf("%d ", arr_a[i]);
+        }
+    }
+    printf("\n");
+    for (int i=0; i<m; i++){
+        if (a[arr_b[i]] == 0 && arr_b[i] != 0){
+            printf("%d ", arr_b[i]);
+        }
+    }
+    return 0;
+}

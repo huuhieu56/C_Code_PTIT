@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+long long factorial(int x){
+    long long product = 1;
+    for (int i=2; i<=x; i++){
+        product *= i;
+    }
+    return product;
+}
+
+int main(){
+    long long n, sum=0;
+    scanf("%lld", &n);
+    long long m = n;
+    while(m){
+        sum += factorial(m%10);
+        m /= 10;
+    }
+    if (sum == n){
+        printf("%d", 1);
+    }
+    else{
+        printf("%d", 0);
+    }
+    return 0;
+}

@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<math.h>
+
+int isPalindromeArray(long arr[], int n){
+    for (int i=0; i<sqrt(n)+1; i++){
+        if (arr[i] != arr[n-i-1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int n;
+        scanf("%d", &n);
+        long arr[n];
+        for (int i=0; i<n; i++){
+            scanf("%ld", &arr[i]);
+        }
+        if (isPalindromeArray(arr, n)){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }
+    }
+}

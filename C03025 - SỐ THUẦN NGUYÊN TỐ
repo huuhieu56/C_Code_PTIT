@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+typedef long long ll;
+
+int isPrime (ll n) {
+    if (n==2 || n==3) return 1;
+    if (n%2==0 || n<2) return 0;
+    for (ll i=2; i<=sqrt(n); i++) {
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+
+int check (ll n) {
+    ll a = n;
+    ll sum = 0;
+    while (a) {
+        if (isPrime(a%10)==0) return 0;
+        sum += a%10;
+        a /= 10;
+    }
+    if (isPrime(sum)==0) return 0;
+    return isPrime(n);
+}
+
+int main () {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        ll a, b, count=0;
+        scanf("%lld %lld", &a, &b);
+        for (ll i=a; i<=b; i++) {
+            if (check(i)) count++;
+        }
+        printf("%lld\n", count);
+    }
+}

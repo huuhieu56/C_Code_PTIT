@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<math.h>
+
+int isPrime(long long n){
+    if (n==2 || n==3) return 1;
+    if (n<2 || n%2==0) return 0;
+    for (long long i=2; i<(long long)sqrt(n)+1; i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++){
+        int n, val=0;
+        scanf("%d", &n);    
+        long long a_prime[n*n+1];
+        int index = 0;
+        long long cur_prime = 2;
+        while (index<n*n){
+            a_prime[index] = cur_prime;
+            index++;
+            cur_prime++;
+            while (isPrime(cur_prime) != 1){
+                cur_prime++;
+            }
+        }
+        long long arr[n][n];
+        int top = 0, bot = n-1, left = 0, right = n-1;
+        while (top <= bot && left <= right){
+            for (int i=left; i<right; i++){
+                arr[top][i] = a_prime[val];
+                val++;
+            }
+            for (int i=top; i<bot; i++){
+                arr[i][right] = a_prime[val];
+                val++;
+            }
+            for (int i=right; i>left; i--){
+                arr[bot][i] = a_prime[val];
+                val++;
+            }
+            for (int i=bot; i>top; i--){
+                arr[i][left] = a_prime[val];
+                val++;
+            }
+            top++;
+            bot--;
+            left++;
+            right--;
+        }
+        if (n%2 == 1){
+            arr[n/2][n/2] = a_prime[val];
+        }
+        printf("Test %d:\n", _);
+        for (int i=0; i<n; i++){
+            for (int j=0; j<n; j++){
+                printf("%d ", arr[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,12 @@
+#include<stdio.h>
+
+int main(){
+    long long n;
+    scanf("%lld", &n);
+    int last_number = n%10;
+    while(n>10){
+        n /= 10;
+    }
+    printf("%lld %d", n, last_number);
+    return 0;
+}

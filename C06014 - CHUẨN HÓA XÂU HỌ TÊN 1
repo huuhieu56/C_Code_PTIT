@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char string[80], word[6][20];
+        gets(string);
+        int i=0;
+        while(string[i] == ' '){
+            i++;
+        }
+        int j=0, k=0;
+        for (int idx=i; string[idx] !='\0'; idx++){
+            if (string[idx] == ' '){
+                word[j][k] = '\0';
+                k=0;
+                j++;
+                while(string[idx+1] == ' '){
+                    idx++;
+                }
+            }
+            else{
+                if (k==0){
+                    if (string[idx] >= 'a' && string[idx] <= 'z'){
+                        word[j][k] = string[idx] - 'a' + 'A';
+                    }
+                    else{
+                        word[j][k] = string[idx];
+                    }
+                }
+                else{
+                    if (string[idx] >= 'A' && string[idx] <= 'Z'){
+                        word[j][k] = string[idx] - 'A' + 'a';
+                    }
+                    else{
+                        word[j][k] = string[idx];
+                    }
+                }
+                k++;
+            }
+        }
+        word[j][k] = '\0';
+        for (int i=0; i<=j; i++){
+            printf("%s ", word[i]);
+        }
+        printf("\n");
+    }
+}

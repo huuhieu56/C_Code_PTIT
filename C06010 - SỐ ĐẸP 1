@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char number[500];
+        gets(number);
+        int left=0, right=strlen(number)-1;
+        int bool = 1;
+        while (left<=right){
+            if (number[left]%2 != 0){
+                bool = 0;
+                break;
+            }
+            if (number[right]%2 != 0){
+                bool = 0;
+                break;
+            }
+            if (number[left] != number[right]){
+                bool = 0;
+                break;
+            }
+            left++;
+            right--;
+        }
+        if(bool){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }
+    }
+
+    return 0;
+}

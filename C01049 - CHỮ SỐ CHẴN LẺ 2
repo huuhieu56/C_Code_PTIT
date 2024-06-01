@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+void get_count(long long n){
+    int count_odd_number = 0, count_even_number = 0;
+    while(n){
+        if((n%10)%2 == 0){
+            count_even_number++;
+        }
+        else{
+            count_odd_number++;
+        }
+        n /= 10;
+    }
+    printf("%d %d\n", count_odd_number, count_even_number);
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long temp;
+        scanf("%lld", &temp);
+        get_count(temp);
+    }
+
+    return 0;
+}

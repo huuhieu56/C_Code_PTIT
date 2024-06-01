@@ -1,0 +1,46 @@
+#include<stdio.h>
+
+int arr[2000005];
+
+void sang_nguyen_to_eratosthenes()
+{
+	for (int i = 2; i * i <= 2e6 + 1; i++)
+	{
+		if (arr[i] == 0)
+		{
+			for (int j = i * i; j <= 2e6 + 1; j += i)
+			{
+				if (arr[j] == 0)
+				{
+					arr[j] = i;
+				}
+			}
+		}
+	}
+	for (int i = 2; i <= 2e6 + 1; i++)
+	{
+		if (arr[i] == 0)
+			arr[i] = i;
+	}
+}
+
+int main(){
+	sang_nguyen_to_eratosthenes();
+
+	int t;
+	long long s = 0;
+	scanf("%d", &t);	
+
+	while(t--){
+		int b;
+		scanf("%d", &b);
+		while (b!=1){
+			s += arr[b];
+			b /= arr[b];
+		}
+	}
+
+	printf("%lld", s);
+	return 0;
+
+}

@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+int isPrime(long long n){
+    if (n==2 || n==3) return 1;
+    if (n%2==0 || n<2) return 0;
+    for (long long i=2; i<=sqrt(n); i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+
+int isPalindrome(long long n){
+    long long a=n;
+    long long b=0;
+    while (a){
+        b = b*10 + a%10;
+        a /= 10;
+    }
+    return b==n;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        long long a, b;
+        int count = 10;
+        scanf("%lld %lld", &a, &b);
+        for (long long i=a; i<=b; i++){
+            if (isPrime(i) && isPalindrome(i)){
+                printf("%lld ", i);
+                count--;
+            }
+            if (count==0){
+                printf("\n");
+                count = 10;
+            }
+        }
+        printf("\n\n");
+    }
+}

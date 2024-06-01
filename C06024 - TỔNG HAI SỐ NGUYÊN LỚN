@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<string.h>
+
+void reverse_string(char *string){
+    int len = strlen(string);
+    char* start = string;
+    char* end = string+len-1;
+    while(start<end){
+        char temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    getchar();
+    while(t--){
+        char string_a[500], string_b[500], string_sum[501];
+        gets(string_a);
+        gets(string_b);
+        int len_a = strlen(string_a);
+        int len_b = strlen(string_b);
+        reverse_string(string_a);
+        reverse_string(string_b);
+        int i=0;
+        int carry = 0;
+
+        while(i < len_a || i < len_b){
+            char a = string_a[i];
+            if (i>=len_a) a = '0';
+            char b = string_b[i];
+            if (i>=len_b) b = '0';
+            int temp_char = a - '0' + b - '0' + carry;
+            if (temp_char >= 10){
+                temp_char -= 10;
+                string_sum[i] = '0' + temp_char;
+                carry=0;
+                carry++;
+            }
+            else{
+                string_sum[i] = '0' + temp_char;
+                carry = 0;
+            }
+            i++;            
+        }
+        if (carry){
+            string_sum[i] = '0'+carry;
+            i++;
+        }
+        string_sum[i] = '\0';
+        reverse_string(string_sum);
+        printf("%s\n", string_sum);
+    }
+}

@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+
+int a[10] = {1000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
+
+int calc(int n){
+    int count = 0;
+    int i = 0;
+    while (i<10 && n != 0){
+        if (n>=a[i]){
+            n -= a[i];
+            count++;
+        }
+        else{
+            i++;
+        }
+    }
+    return count;
+}
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int n;
+        scanf("%d", &n);
+        printf("%d\n", calc(n));
+    }
+    return 0;
+}

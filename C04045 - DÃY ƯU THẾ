@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        int count_odd=0, count_even=0;
+        char temp;
+        int arr[200];
+        int i=0;
+        do{
+            scanf("%d%c", &arr[i], &temp);
+            if (arr[i]%2 == 0){
+                count_even++;
+            }
+            else{
+                count_odd++;
+            }
+            i++;
+        }
+        while(temp != '\n');
+        if ((i%2 == 0 && count_even>count_odd) || (i%2 == 1 && count_even< count_odd)){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }
+
+    }
+}

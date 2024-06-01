@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+typedef long long ll;
+
+ll gcd (ll a, ll b) {
+    if (b==0) return a;
+    return gcd(b, a%b);
+}
+
+ll lcm (ll a, ll b) {
+    ll gcd_ab = gcd(a, b);
+    return (a*b)/gcd_ab;
+}
+
+int main () {
+    int t;
+    scanf("%d", &t);
+
+    while (t--) {
+        ll n, m, lcm_temp = 1;
+        scanf("%lld %lld", &n, &m);
+        for (ll i=n; i<=m; i++) {
+            ll temp = lcm(lcm_temp, i);
+            lcm_temp = temp;
+        }
+        printf("%lld\n", lcm_temp);
+    }
+}

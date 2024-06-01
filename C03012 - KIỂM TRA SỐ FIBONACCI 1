@@ -1,0 +1,13 @@
+#include<stdio.h>
+
+int main() {
+    long long n;
+    scanf("%lld", &n);
+    long long a=0, b=1;
+    while (a<n) {
+        long long sum = a+b;
+        a = b;
+        b = sum;
+    }
+    printf("%d", a ==n);
+}

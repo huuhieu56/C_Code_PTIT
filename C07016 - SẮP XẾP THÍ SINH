@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+
+struct human {
+    int id;
+    char name[50];
+    char date[20];
+    float score_1;
+    float score_2;
+    float score_3;
+    float sum;
+};
+
+void swap_struct (struct human* it1, struct human* it2) {
+    struct human temp = *it1;
+    *it1 = *it2;
+    *it2 = temp;
+}
+
+void selection_sort (struct human array_item[], int n) {
+    for (int i=0; i<n-1; i++) {
+        int max_idx = i;
+        for (int j=i+1; j<n; j++) {
+            if (array_item[j].sum > array_item[max_idx].sum) max_idx = j;
+        }
+        swap_struct (&array_item[i], &array_item[max_idx]);
+    }
+}
+
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    struct human Human[t];
+    for (int _=0; _<t; _++) {
+        Human[_].id = _+1;
+        getchar();
+        gets(Human[_].name);
+        gets(Human[_].date);
+        scanf("%f", &Human[_].score_1);
+        scanf("%f", &Human[_].score_2);
+        scanf("%f", &Human[_].score_3);
+        Human[_].sum = Human[_].score_1 + Human[_].score_2 + Human[_].score_3;
+    }
+    selection_sort(Human, t);
+    for (int _=0; _<t; _++) {    
+        printf("%d %s %s %.1f\n", Human[_].id, Human[_].name, Human[_].date, Human[_].sum);    
+    }
+}

@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+void check(long long n){
+    int pre_number = n%10;
+    while(n){
+        if ((n%10)>pre_number){
+            printf("NO\n");
+            return;
+        }
+        pre_number = n%10;
+        n /= 10;
+    }
+    printf("YES\n");
+    return;
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long temp;
+        scanf("%lld", &temp);
+        check(temp);
+    }
+    return 0;
+}

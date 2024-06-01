@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int m, n, p, q;
+    scanf("%d %d %d %d", &m, &n, &p, &q);
+    int arr1[m][n], arr2[n][p], arr3[p][q];
+    for (int i=0; i<m; i++){
+        for (int j=0; j<n; j++){
+            scanf("%d", &arr1[i][j]);
+        }
+    }
+    for (int i=0; i<n; i++){
+        for (int j=0; j<p; j++){
+            scanf("%d", &arr2[i][j]);
+        }
+    }
+    for (int i=0; i<p; i++){
+        for (int j=0; j<q; j++){
+            scanf("%d", &arr3[i][j]);
+        }
+    }
+    int arr12[m][p];
+    for (int i=0; i<m; i++){
+        for (int j=0; j<p; j++){
+            arr12[i][j] = 0;
+            for (int k=0; k<n; k++){
+                int a = arr1[i][k];
+                int b = arr2[k][j];
+                arr12[i][j] += a*b;
+            }
+        }
+    }
+    int arr123[m][q];
+    for(int i=0; i<m; i++){
+        for (int j=0; j<q; j++){
+            arr123[i][j] = 0;
+            for (int k=0; k<p; k++){
+                int a = arr12[i][k];
+                int b = arr3[k][j];
+                arr123[i][j] += a*b;
+            }
+        }
+    }
+    for (int i=0; i<m; i++){
+        for (int j=0; j<q; j++){
+            printf("%d ", arr123[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}

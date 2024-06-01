@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+
+int is_prime(long long n){
+    if (n<2){
+        return 0;
+    }
+    for (int i=2; i<(int)sqrt(n)+1; i++){
+        if (n%i == 0){
+            return 0;
+        }
+    }
+    return 1;
+
+}
+
+long long get_count(long long a, long long b){
+    long long count = 0;
+    long long left, right = (long long)sqrt(b);
+    if (pow((long long)sqrt(a), 2) == a){
+        left = (long long)sqrt(a);
+    }
+    else{
+        left = (long long)sqrt(a) + 1;
+    }
+    if (left == 1){
+        left++;
+    }
+    for (long long i=left; i <= right; i++){
+        if (is_prime(i) == 1){
+            count++;
+        }
+    }
+    return count;
+    
+}
+
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long a, b;
+        scanf("%lld %lld", &a, &b);
+        printf("%lld\n", get_count(a, b));
+    }
+    return 0;
+}

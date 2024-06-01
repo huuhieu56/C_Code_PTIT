@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+
+int main() {
+    long long n;
+    scanf("%lld", &n);
+    long long a=0, b=1;
+    while(n--) {
+        printf("%lld ", a);
+        long long sum = a+b;
+        a = b;
+        b = sum;
+    }
+}

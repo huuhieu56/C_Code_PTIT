@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    char string[1000], word[100][20], char_0 = '\0';
+    gets(string);
+    int j=0, k=0;
+    for(int i=0; string[i] != '\0'; i++){
+        char c = string[i];
+        if (c>='A' && c<='Z') c = c-'A'+'a';
+        if (c == ' '){
+            word[j][k] = '\0';
+            j++;
+            k=0;
+        }
+        else{
+            word[j][k] = c;
+            k++;
+        }
+    }
+    word[j][k] = '\0';
+    for (int i=0; i<j+1; i++){
+        if (word[i][0] == char_0){
+            continue;
+        }
+        int count = 1;
+        for (int l=i+1; l<j+1; l++){
+            if (word[l][0] == char_0){
+                continue;
+            }
+            if (strcmp(word[i], word[l]) == 0){
+                count++;
+                word[l][0] = '\0';
+            }
+        }
+        printf("%s %d\n", word[i], count);
+    }
+    return 0;
+}

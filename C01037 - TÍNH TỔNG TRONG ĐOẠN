@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+void swap(long long *p, long long *q){
+    long long temp;
+    temp = *q;
+    *q = *p;
+    *p = temp;
+
+}
+int main(){
+    long long a, b;
+    scanf("%lld %lld", &a, &b);
+    if (a >b){
+        swap(&a, &b);
+    }
+    long long sum = 0;
+    for (long long i=a; i<=b; i++){
+        sum += i;
+    }
+    printf("%lld", sum);
+    return 0;
+}

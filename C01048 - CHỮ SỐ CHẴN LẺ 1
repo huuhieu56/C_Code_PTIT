@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int main(){
+    long long n;
+    int count_odd_number = 0, count_even_number = 0;
+    scanf("%lld", &n);
+    while(n){
+        if((n%10)%2 == 0){
+            count_even_number++;
+        }
+        else{
+            count_odd_number++;
+        }
+        n /= 10;
+    }
+    printf("%d %d", count_odd_number, count_even_number);
+
+    return 0;
+}

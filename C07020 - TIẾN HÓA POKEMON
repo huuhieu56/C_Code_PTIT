@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+
+struct Pokemon {
+    char name[1000];
+    long long k;
+    long long m;
+    long long count;
+};
+
+int main () {
+    int n;
+    scanf("%d\n", &n);
+    struct Pokemon arr[n];
+    long long max_count = 0;
+    long long sum = 0;
+    for (int i=0; i<n; i++) {
+        gets(arr[i].name);
+        scanf("%lld%lld\n", &arr[i].k, &arr[i].m);
+        arr[i].count = 0;
+        while (arr[i].m >= arr[i].k) {
+            arr[i].count++;
+            arr[i].m -= arr[i].k;
+            arr[i].m += 2;
+        }
+        if (arr[i].count > max_count) {
+            max_count = arr[i].count;
+        }
+        sum += arr[i].count;
+    }
+    printf("%lld\n", sum);
+    for (int i=0; i<n; i++) {
+        if (arr[i].count == max_count) {
+            printf("%s", arr[i].name); 
+            break;
+        }
+    }
+}

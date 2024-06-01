@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main(){
+    char string[300], stack[300];
+    int len_stack = 0;
+    gets(string);
+    for (int i=0; string[i] != '\0'; i++){
+
+        if (len_stack == 0){
+            stack[len_stack] = string[i];
+            len_stack++;
+            continue;
+        }
+        if (string[i] == ')' && stack[len_stack-1] == '('){
+            stack[len_stack-1] = '\0';
+            len_stack--;
+            continue;
+        }
+        else if (string[i] == '}' && stack[len_stack-1] == '{'){
+            stack[len_stack-1] = '\0';
+            len_stack--;
+            continue;
+        }
+        else if (string[i] == ']' && stack[len_stack-1] == '['){
+            stack[len_stack-1] = '\0';
+            len_stack--;
+            continue;
+        }
+        else if (string[i] == '\'' && stack[len_stack-1] == '\''){
+            stack[len_stack-1] = '\0';
+            len_stack--;
+            continue;
+        }
+        else if (string[i] == '"' && stack[len_stack-1] == '"'){
+            stack[len_stack-1] = '\0';
+            len_stack--;
+            continue;
+
+        }
+        else {
+            stack[len_stack] = string[i];
+            len_stack++;
+            continue;
+        }
+    }
+    printf("%d", len_stack==0);
+}

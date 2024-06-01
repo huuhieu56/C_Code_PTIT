@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+long long ucln(long long a, long long b){
+    if (b == 0){
+        return a;
+    }
+    return ucln(b, a%b);
+}
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    while(t--){
+        long long a, b;
+        scanf("%lld %lld", &a, &b);
+        printf("%lld\n", ucln(a, b));
+
+    }
+    return 0;
+}

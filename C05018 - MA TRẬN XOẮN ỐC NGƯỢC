@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int _=1; _<=t; _++){
+        int n, val;
+        scanf("%d", &n);
+        val = pow(n, 2);
+        int arr[n][n];
+        int top = 0, bot = n-1, left = 0, right = n-1;
+        while (top <= bot && left <= right){
+            for (int i=left; i<right; i++){
+                arr[top][i] = val;
+                val--;
+            }
+            for (int i=top; i<bot; i++){
+                arr[i][right] = val;
+                val--;
+            }
+            for (int i=right; i>left; i--){
+                arr[bot][i] = val;
+                val--;
+            }
+            for (int i=bot; i>top; i--){
+                arr[i][left] = val;
+                val--;
+            }
+            top++;
+            bot--;
+            left++;
+            right--;
+        }
+        if (n%2 == 1){
+            arr[n/2][n/2] = val;
+        }
+        printf("Test %d:\n", _);
+        for (int i=0; i<n; i++){
+            for (int j=0; j<n; j++){
+                printf("%d ", arr[i][j]);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}

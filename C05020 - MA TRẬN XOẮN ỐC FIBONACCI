@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<math.h>
+
+void fib(int* val1, int* val2){
+    int temp = *val2;
+    *val2 = *val1 + *val2;
+    *val1 = temp;
+}
+
+
+int main(){
+    int n, val1=0, val2=1;
+    scanf("%d", &n);    
+    long long arr[n][n];
+    int top = 0, bot = n-1, left = 0, right = n-1;
+    while (top <= bot && left <= right){
+        for (int i=left; i<right; i++){
+            arr[top][i] = val1;
+            fib(&val1, &val2);
+        }
+        for (int i=top; i<bot; i++){
+            arr[i][right] = val1;
+            fib(&val1, &val2);
+        }
+        for (int i=right; i>left; i--){
+            arr[bot][i] = val1;
+            fib(&val1, &val2);
+        }
+        for (int i=bot; i>top; i--){
+            arr[i][left] = val1;
+            fib(&val1, &val2);
+        }
+        top++;
+        bot--;
+        left++;
+        right--;
+    }
+    if (n%2 == 1){
+        arr[n/2][n/2] = val1;
+    }
+
+    for (int i=0; i<n; i++){
+        for (int j=0; j<n; j++){
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
